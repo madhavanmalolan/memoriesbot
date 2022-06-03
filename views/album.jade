@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Welcome to the Memories Album of #{album.title}!
+  - each content in contents
+    h2= content.question
+    - each answer in content.answers
+      if answer.split("::CONTENT-START::")[0] == "TEXT"
+        p= answer.split("::CONTENT-START::")[1]
+      if answer.split("::CONTENT-START::")[0] == "IMAGE"
+        img(src=answer.split("::CONTENT-START::")[1], style="width:100%")
+
